@@ -33,21 +33,26 @@ namespace Project1 {
 			{
 				delete components;
 			}
+
 		}
 
 	protected:
 	private: System::Windows::Forms::Label^ label1;
 	private: System::Windows::Forms::PictureBox^ okno;
+	private: System::Windows::Forms::Button^ saveTriagle;
 
-	private: System::Windows::Forms::Button^ button1;
+
 
 
 	private: System::Windows::Forms::Label^ label2;
 	private: System::Windows::Forms::Label^ label3;
-	private: System::Windows::Forms::NumericUpDown^ numericUpDown1;
-	private: System::Windows::Forms::NumericUpDown^ numericUpDown2;
+	private: System::Windows::Forms::NumericUpDown^ levelTriagle;
+
+	private: System::Windows::Forms::NumericUpDown^ sideTriangle;
+
 	private: System::Windows::Forms::Button^ btncreate;
-	private: System::Windows::Forms::TextBox^ answer;
+	private: System::Windows::Forms::SaveFileDialog^ saveFileDialog1;
+
 
 
 
@@ -68,16 +73,16 @@ namespace Project1 {
 		{
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->okno = (gcnew System::Windows::Forms::PictureBox());
-			this->button1 = (gcnew System::Windows::Forms::Button());
+			this->saveTriagle = (gcnew System::Windows::Forms::Button());
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->label3 = (gcnew System::Windows::Forms::Label());
-			this->numericUpDown1 = (gcnew System::Windows::Forms::NumericUpDown());
-			this->numericUpDown2 = (gcnew System::Windows::Forms::NumericUpDown());
+			this->levelTriagle = (gcnew System::Windows::Forms::NumericUpDown());
+			this->sideTriangle = (gcnew System::Windows::Forms::NumericUpDown());
 			this->btncreate = (gcnew System::Windows::Forms::Button());
-			this->answer = (gcnew System::Windows::Forms::TextBox());
+			this->saveFileDialog1 = (gcnew System::Windows::Forms::SaveFileDialog());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->okno))->BeginInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numericUpDown1))->BeginInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numericUpDown2))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->levelTriagle))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->sideTriangle))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// label1
@@ -101,21 +106,23 @@ namespace Project1 {
 			this->okno->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
 			this->okno->Location = System::Drawing::Point(40, 76);
 			this->okno->Name = L"okno";
+			this->okno->Padding = System::Windows::Forms::Padding(10);
 			this->okno->Size = System::Drawing::Size(678, 410);
 			this->okno->TabIndex = 1;
 			this->okno->TabStop = false;
 			// 
-			// button1
+			// saveTriagle
 			// 
-			this->button1->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Bottom | System::Windows::Forms::AnchorStyles::Right));
-			this->button1->Font = (gcnew System::Drawing::Font(L"Arial Narrow", 20.29091F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->saveTriagle->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Bottom | System::Windows::Forms::AnchorStyles::Right));
+			this->saveTriagle->Font = (gcnew System::Drawing::Font(L"Arial Narrow", 20.29091F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->button1->Location = System::Drawing::Point(777, 439);
-			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(225, 47);
-			this->button1->TabIndex = 2;
-			this->button1->Text = L"Сохранить";
-			this->button1->UseVisualStyleBackColor = true;
+			this->saveTriagle->Location = System::Drawing::Point(777, 439);
+			this->saveTriagle->Name = L"saveTriagle";
+			this->saveTriagle->Size = System::Drawing::Size(225, 47);
+			this->saveTriagle->TabIndex = 2;
+			this->saveTriagle->Text = L"Сохранить";
+			this->saveTriagle->UseVisualStyleBackColor = true;
+			this->saveTriagle->Click += gcnew System::EventHandler(this, &MyForm::saveTriagle_Click);
 			// 
 			// label2
 			// 
@@ -128,6 +135,7 @@ namespace Project1 {
 			this->label2->Size = System::Drawing::Size(142, 20);
 			this->label2->TabIndex = 4;
 			this->label2->Text = L"Высота треугольника";
+			this->label2->Click += gcnew System::EventHandler(this, &MyForm::label2_Click);
 			// 
 			// label3
 			// 
@@ -141,23 +149,23 @@ namespace Project1 {
 			this->label3->TabIndex = 6;
 			this->label3->Text = L"Сторона треугольника";
 			// 
-			// numericUpDown1
+			// levelTriagle
 			// 
-			this->numericUpDown1->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Right));
-			this->numericUpDown1->Location = System::Drawing::Point(779, 99);
-			this->numericUpDown1->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 10, 0, 0, 0 });
-			this->numericUpDown1->Name = L"numericUpDown1";
-			this->numericUpDown1->Size = System::Drawing::Size(223, 20);
-			this->numericUpDown1->TabIndex = 7;
+			this->levelTriagle->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Right));
+			this->levelTriagle->Location = System::Drawing::Point(779, 99);
+			this->levelTriagle->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 10, 0, 0, 0 });
+			this->levelTriagle->Name = L"levelTriagle";
+			this->levelTriagle->Size = System::Drawing::Size(223, 20);
+			this->levelTriagle->TabIndex = 7;
 			// 
-			// numericUpDown2
+			// sideTriangle
 			// 
-			this->numericUpDown2->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Right));
-			this->numericUpDown2->Location = System::Drawing::Point(779, 160);
-			this->numericUpDown2->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 10000, 0, 0, 0 });
-			this->numericUpDown2->Name = L"numericUpDown2";
-			this->numericUpDown2->Size = System::Drawing::Size(223, 20);
-			this->numericUpDown2->TabIndex = 8;
+			this->sideTriangle->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Right));
+			this->sideTriangle->Location = System::Drawing::Point(779, 160);
+			this->sideTriangle->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 10000, 0, 0, 0 });
+			this->sideTriangle->Name = L"sideTriangle";
+			this->sideTriangle->Size = System::Drawing::Size(223, 20);
+			this->sideTriangle->TabIndex = 8;
 			// 
 			// btncreate
 			// 
@@ -172,33 +180,25 @@ namespace Project1 {
 			this->btncreate->UseVisualStyleBackColor = true;
 			this->btncreate->Click += gcnew System::EventHandler(this, &MyForm::btncreate_Click);
 			// 
-			// answer
-			// 
-			this->answer->Location = System::Drawing::Point(779, 244);
-			this->answer->Name = L"answer";
-			this->answer->Size = System::Drawing::Size(100, 20);
-			this->answer->TabIndex = 10;
-			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(1046, 541);
-			this->Controls->Add(this->answer);
 			this->Controls->Add(this->btncreate);
-			this->Controls->Add(this->numericUpDown2);
-			this->Controls->Add(this->numericUpDown1);
+			this->Controls->Add(this->sideTriangle);
+			this->Controls->Add(this->levelTriagle);
 			this->Controls->Add(this->label3);
 			this->Controls->Add(this->label2);
-			this->Controls->Add(this->button1);
+			this->Controls->Add(this->saveTriagle);
 			this->Controls->Add(this->okno);
 			this->Controls->Add(this->label1);
 			this->MaximumSize = System::Drawing::Size(1280, 720);
 			this->Name = L"MyForm";
 			this->Text = L"Треугольник Серпинского";
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->okno))->EndInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numericUpDown1))->EndInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numericUpDown2))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->levelTriagle))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->sideTriangle))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -207,7 +207,36 @@ namespace Project1 {
 		
 	
 	private: System::Void btncreate_Click(System::Object^ sender, System::EventArgs^ e) {
-		float center = (okno->Width) / 2;
+		int side = Convert::ToDouble(sideTriangle->Value);
+		int level = Convert::ToDouble(levelTriagle->Value);
+
+		Pen^ redPen = gcnew Pen(Color::Red);
+		redPen->Width = 4;
+		int pW = okno->Width, pH = okno->Height;
+		Bitmap^ img = gcnew Bitmap(pW, pH);
+		Graphics^ g = Graphics::FromImage(img);
+		float centerX = (okno->Width) / 2;
+		float x1 = centerX, x2 = (centerX - side), x3 = (centerX + side), y1 = 0, y2 = (Math::Sqrt(3)/2)*side, y3 = y2;
+		g->DrawLine(redPen, x1, y1, x2, y2);
+		g->DrawLine(redPen, x2, y2, x3, y3);
+		g->DrawLine(redPen, x3, y3, x1, y1);
 	}
+	private: System::Void okno_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
+	}
+
+	private: System::Void label2_Click(System::Object^ sender, System::EventArgs^ e) {
+	}
+	private: System::Void saveTriagle_Click(System::Object^ sender, System::EventArgs^ e) {
+		saveFileDialog1->Filter = "Image(*.png) | *.png | Image(*.jpg) | *.jpg | Image(*.bmp) | *.bmp | All files (*.*) | *.*";
+		saveFileDialog1->Title = "Сохранение изображения";
+		saveFileDialog1->FileName = "Треугольник Серпинского.png";
+
+		if (saveFileDialog1->ShowDialog() == Windows::Forms::DialogResult::OK) {
+			okno->Image->Save(saveFileDialog1->FileName);
+		}
+	}
+	private: System::Void saveFileDialog1_FileOk(System::Object^ sender, System::ComponentModel::CancelEventArgs^ e) {
+	}
+
 };
 }

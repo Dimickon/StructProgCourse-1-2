@@ -1,4 +1,5 @@
 #include "MyForm.h"
+#include <math.h>
 #include <Windows.h>
 using namespace System;
 using namespace Project1;
