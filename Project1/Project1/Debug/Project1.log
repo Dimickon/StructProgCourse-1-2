@@ -1,5 +1,4 @@
 ﻿  MyForm.cpp
-  .NETFramework,Version=v4.6.AssemblyAttributes.cpp
-  Создание кода...
+D:\WEB\Проекты\StructProgCourse1-2\Project1\Project1\MyForm.h(210,16): warning C4244: инициализация: преобразование "int" в "float", возможна потеря данных
   MyForm.obj : обнаружен модуль MSIL; для MSIL последовательная компоновка отключена; выполняется полная компоновка
   Project1.vcxproj -> D:\WEB\Проекты\StructProgCourse1-2\Project1\Debug\Project1.exe
