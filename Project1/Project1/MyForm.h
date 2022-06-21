@@ -233,15 +233,41 @@ namespace Project1 {
 
 		}
 #pragma endregion
-		
 	
+	private: System::Void buildSerpinsky(int level, int side, int thickness, Point p1, Point p2, Point p3) {
+		int pW = okno->Width, pH = okno->Height;
+		Bitmap^ img = gcnew Bitmap(pW, pH);
+		okno->Image = img;
+		Graphics^ g = Graphics::FromImage(img);
+		Pen^ colorPen = gcnew Pen(Color::Red);
+		colorPen->Width = thickness;
+
+		g->DrawLine(colorPen, p1, p2);
+		g->DrawLine(colorPen, p2, p3);
+		g->DrawLine(colorPen, p3, p1);
+		level--;
+		if (level > 0) {
+
+			Point pNew1(p2.X, p2.Y);
+			Point pNew2(pNew1.X - side, pNew1.Y + (Math::Sqrt(3) / 2) * side);
+			Point pNew3(pNew1.X + side, pNew1.Y + (Math::Sqrt(3) / 2) * side);
+
+			buildSerpinsky(level, side, thickness, pNew1, pNew2, pNew3);
+
+			/*Point p12(p2.X, p2.Y);
+			Point p23(p3.X, p3.Y);
+			Point p13(p2.X, p2.Y);
+
+			buildSerpinsky(level, side, thickness, p1, p12, p13);
+			buildSerpinsky(level, side, thickness, p12, p2, p23);
+			buildSerpinsky(level, side, thickness, p13, p23, p3);*/
+		}
+	};
+
 	private: System::Void btncreate_Click(System::Object^ sender, System::EventArgs^ e) {
 		int side = Convert::ToDouble(sideTriangle->Value);
 		int level = Convert::ToDouble(levelTriagle->Value);
 		int thickness = Convert::ToDouble(lineThickness->Value);
-
-		Pen^ redPen = gcnew Pen(Color::Red);
-		redPen->Width = thickness;
 
 		int pW = okno->Width, pH = okno->Height;
 		Bitmap^ img = gcnew Bitmap(pW, pH);
@@ -254,20 +280,15 @@ namespace Project1 {
 		float x2 = (x1 - side), y2 = (Math::Sqrt(3) / 2) * side;
 		float x3 = (x1 + side), y3 = y2;
 
-		void buildSerpinsky(int iteration, float x1, float y1) {
-
-			float x2 = (x1 - side), y2 = (Math::Sqrt(3) / 2) * side;
-			float x3 = (x1 + side), y3 = y2;
-
-			g->DrawLine(redPen, x1, y1, x2, y2);
-			g->DrawLine(redPen, x2, y2, x3, y3);
-			g->DrawLine(redPen, x3, y3, x1, y1);
-			okno->Refresh();
-			iteration--;
-
-			buildSerpinsky(iteration, x2, y2);
-			buildSerpinsky(iteration, x3, y3);
-		};
+		Point p1(x1, y1);
+		Point p2(x2, y2);
+		Point p3(x3, y3);
+	
+		buildSerpinsky(level, side, thickness, p1, p2, p3);
+		//buildSerpinsky(level, side, thickness, p1, p2, p3);
+		/*
+		float x2 = (x1 - side), y2 = (Math::Sqrt(3) / 2) * side;
+		float x3 = (x1 + side), y3 = y2;
 
 
 		// То, какой треугольник строим: 0 - левый, 1 - правый
@@ -320,7 +341,7 @@ namespace Project1 {
 				x3 = (x1 + side), y3 = y2;
 				iterationAddTriagle = 0;
 			}
-		}
+		}*/
 	}
 	private: System::Void okno_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
 	}
