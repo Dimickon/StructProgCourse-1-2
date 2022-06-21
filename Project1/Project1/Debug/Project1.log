@@ -1,7 +1,12 @@
 ﻿  MyForm.cpp
-D:\WEB\Проекты\StructProgCourse1-2\Project1\Project1\MyForm.h(210,12): warning C4244: инициализация: преобразование "double" в "int", возможна потеря данных
-D:\WEB\Проекты\StructProgCourse1-2\Project1\Project1\MyForm.h(211,13): warning C4244: инициализация: преобразование "double" в "int", возможна потеря данных
-D:\WEB\Проекты\StructProgCourse1-2\Project1\Project1\MyForm.h(218,17): warning C4244: инициализация: преобразование "int" в "float", возможна потеря данных
-D:\WEB\Проекты\StructProgCourse1-2\Project1\Project1\MyForm.h(219,80): warning C4244: инициализация: преобразование "double" в "float", возможна потеря данных
+D:\WEB\Проекты\StructProgCourse1-2\Project1\Project1\MyForm.h(239,12): warning C4244: инициализация: преобразование "double" в "int", возможна потеря данных
+D:\WEB\Проекты\StructProgCourse1-2\Project1\Project1\MyForm.h(240,13): warning C4244: инициализация: преобразование "double" в "int", возможна потеря данных
+D:\WEB\Проекты\StructProgCourse1-2\Project1\Project1\MyForm.h(241,17): warning C4244: инициализация: преобразование "double" в "int", возможна потеря данных
+D:\WEB\Проекты\StructProgCourse1-2\Project1\Project1\MyForm.h(244,19): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+D:\WEB\Проекты\StructProgCourse1-2\Project1\Project1\MyForm.h(251,17): warning C4244: инициализация: преобразование "int" в "float", возможна потеря данных
+D:\WEB\Проекты\StructProgCourse1-2\Project1\Project1\MyForm.h(253,30): warning C4244: инициализация: преобразование "double" в "float", возможна потеря данных
+D:\WEB\Проекты\StructProgCourse1-2\Project1\Project1\MyForm.h(272,38): warning C4244: =: преобразование "double" в "float", возможна потеря данных
+D:\WEB\Проекты\StructProgCourse1-2\Project1\Project1\MyForm.h(284,31): warning C4244: =: преобразование "double" в "float", возможна потеря данных
+D:\WEB\Проекты\StructProgCourse1-2\Project1\Project1\MyForm.h(290,31): warning C4244: =: преобразование "double" в "float", возможна потеря данных
   MyForm.obj : обнаружен модуль MSIL; для MSIL последовательная компоновка отключена; выполняется полная компоновка
   Project1.vcxproj -> D:\WEB\Проекты\StructProgCourse1-2\Project1\Debug\Project1.exe
