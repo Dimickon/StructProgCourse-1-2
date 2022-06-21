@@ -14,6 +14,9 @@ namespace Project1 {
 	/// </summary>
 	public ref class MyForm : public System::Windows::Forms::Form
 	{
+		Bitmap^ img;
+		Graphics^ g;
+		Pen^ pen;
 	public:
 		MyForm(void)
 		{
@@ -21,6 +24,11 @@ namespace Project1 {
 			//
 			//TODO: добавьте код конструктора
 			//
+
+			Bitmap^ img;
+			okno->Image = img;
+			Graphics^ g;
+			Pen^ pen;
 		}
 
 	protected:
@@ -233,26 +241,22 @@ namespace Project1 {
 
 		}
 #pragma endregion
-	
-	private: System::Void buildSerpinsky(int level, int side, int thickness, Point p1, Point p2, Point p3) {
-		int pW = okno->Width, pH = okno->Height;
-		Bitmap^ img = gcnew Bitmap(pW, pH);
-		okno->Image = img;
-		Graphics^ g = Graphics::FromImage(img);
-		Pen^ colorPen = gcnew Pen(Color::Red);
-		colorPen->Width = thickness;
 
-		g->DrawLine(colorPen, p1, p2);
-		g->DrawLine(colorPen, p2, p3);
-		g->DrawLine(colorPen, p3, p1);
-		level--;
-		if (level > 0) {
+	private: System::Void buildSerpinsky(Graphics^ g, Pen^ pen, int level, int side, int thickness, Point p1, Point p2, Point p3) {
 
+		/*g->DrawLine(pen, p1, p2);
+		g->DrawLine(pen, p2, p3);
+		g->DrawLine(pen, p3, p1);
+		*/
+		if (level == 0) {
+			array<Point>^ triagle = { p1, p2, p3 };
+			SolidBrush^ blueBrush = gcnew SolidBrush(Color::Blue);
+			g->FillPolygon(blueBrush, triagle);
 			Point pNew1(p2.X, p2.Y);
 			Point pNew2(pNew1.X - side, pNew1.Y + (Math::Sqrt(3) / 2) * side);
 			Point pNew3(pNew1.X + side, pNew1.Y + (Math::Sqrt(3) / 2) * side);
 
-			buildSerpinsky(level, side, thickness, pNew1, pNew2, pNew3);
+			buildSerpinsky(g, pen, level, side, thickness, pNew1, pNew2, pNew3);
 
 			/*Point p12(p2.X, p2.Y);
 			Point p23(p3.X, p3.Y);
@@ -262,29 +266,41 @@ namespace Project1 {
 			buildSerpinsky(level, side, thickness, p12, p2, p23);
 			buildSerpinsky(level, side, thickness, p13, p23, p3);*/
 		}
+
+		else {
+		}
 	};
 
 	private: System::Void btncreate_Click(System::Object^ sender, System::EventArgs^ e) {
-		int side = Convert::ToDouble(sideTriangle->Value);
+		int pW = okno->Width, pH = okno->Height;
+		int side;
+		if (pW > pH) {
+			side = pH;
+		}
+
+		else {
+			side = pW;
+		}
 		int level = Convert::ToDouble(levelTriagle->Value);
 		int thickness = Convert::ToDouble(lineThickness->Value);
 
-		int pW = okno->Width, pH = okno->Height;
-		Bitmap^ img = gcnew Bitmap(pW, pH);
 		okno->Image = img;
-		Graphics^ g = Graphics::FromImage(img);
+		img = gcnew Bitmap(pW, pH);
+		g = Graphics::FromImage(img);
+
+		pen = gcnew Pen(Color::Red, thickness);
 
 		// Координаты верхнего треугольника
 		float centerX = (okno->Width) / 2;
 		float x1 = centerX, y1 = 0;
-		float x2 = (x1 - side), y2 = (Math::Sqrt(3) / 2) * side;
-		float x3 = (x1 + side), y3 = y2;
+		float x2 = (x1 - side / 2), y2 = (Math::Sqrt(3) / 2) * side;
+		float x3 = (x1 + side / 2), y3 = y2;
 
 		Point p1(x1, y1);
 		Point p2(x2, y2);
 		Point p3(x3, y3);
 	
-		buildSerpinsky(level, side, thickness, p1, p2, p3);
+		buildSerpinsky(g, pen, level, side, thickness, p1, p2, p3);
 		//buildSerpinsky(level, side, thickness, p1, p2, p3);
 		/*
 		float x2 = (x1 - side), y2 = (Math::Sqrt(3) / 2) * side;
