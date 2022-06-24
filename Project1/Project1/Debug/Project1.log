@@ -1,18 +1,16 @@
 ﻿  MyForm.cpp
-D:\WEB\Проекты\StructProgCourse1-2\Project1\Project1\MyForm.h(31,9): warning C4101: pen: неиспользованная локальная переменная
-D:\WEB\Проекты\StructProgCourse1-2\Project1\Project1\MyForm.h(30,14): warning C4101: g: неиспользованная локальная переменная
-D:\WEB\Проекты\StructProgCourse1-2\Project1\Project1\MyForm.h(257,40): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
-D:\WEB\Проекты\StructProgCourse1-2\Project1\Project1\MyForm.h(258,40): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
-D:\WEB\Проекты\StructProgCourse1-2\Project1\Project1\MyForm.h(282,13): warning C4244: инициализация: преобразование "double" в "int", возможна потеря данных
-D:\WEB\Проекты\StructProgCourse1-2\Project1\Project1\MyForm.h(283,17): warning C4244: инициализация: преобразование "double" в "int", возможна потеря данных
-D:\WEB\Проекты\StructProgCourse1-2\Project1\Project1\MyForm.h(289,31): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
-D:\WEB\Проекты\StructProgCourse1-2\Project1\Project1\MyForm.h(292,17): warning C4244: инициализация: преобразование "int" в "float", возможна потеря данных
-D:\WEB\Проекты\StructProgCourse1-2\Project1\Project1\MyForm.h(294,34): warning C4244: инициализация: преобразование "double" в "float", возможна потеря данных
-D:\WEB\Проекты\StructProgCourse1-2\Project1\Project1\MyForm.h(297,16): warning C4244: аргумент: преобразование "float" в "int", возможна потеря данных
-D:\WEB\Проекты\StructProgCourse1-2\Project1\Project1\MyForm.h(297,12): warning C4244: аргумент: преобразование "float" в "int", возможна потеря данных
-D:\WEB\Проекты\StructProgCourse1-2\Project1\Project1\MyForm.h(298,16): warning C4244: аргумент: преобразование "float" в "int", возможна потеря данных
-D:\WEB\Проекты\StructProgCourse1-2\Project1\Project1\MyForm.h(298,12): warning C4244: аргумент: преобразование "float" в "int", возможна потеря данных
-D:\WEB\Проекты\StructProgCourse1-2\Project1\Project1\MyForm.h(299,16): warning C4244: аргумент: преобразование "float" в "int", возможна потеря данных
-D:\WEB\Проекты\StructProgCourse1-2\Project1\Project1\MyForm.h(299,12): warning C4244: аргумент: преобразование "float" в "int", возможна потеря данных
+D:\WEB\Проекты\StructProgCourse1-2\Project1\Project1\MyForm.h(33,9): warning C4101: pen: неиспользованная локальная переменная
+D:\WEB\Проекты\StructProgCourse1-2\Project1\Project1\MyForm.h(32,14): warning C4101: g: неиспользованная локальная переменная
+D:\WEB\Проекты\StructProgCourse1-2\Project1\Project1\MyForm.h(295,13): warning C4244: инициализация: преобразование "double" в "int", возможна потеря данных
+D:\WEB\Проекты\StructProgCourse1-2\Project1\Project1\MyForm.h(296,17): warning C4244: инициализация: преобразование "double" в "int", возможна потеря данных
+D:\WEB\Проекты\StructProgCourse1-2\Project1\Project1\MyForm.h(302,31): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+D:\WEB\Проекты\StructProgCourse1-2\Project1\Project1\MyForm.h(305,17): warning C4244: инициализация: преобразование "int" в "float", возможна потеря данных
+D:\WEB\Проекты\StructProgCourse1-2\Project1\Project1\MyForm.h(308,34): warning C4244: инициализация: преобразование "double" в "float", возможна потеря данных
+D:\WEB\Проекты\StructProgCourse1-2\Project1\Project1\MyForm.h(311,16): warning C4244: аргумент: преобразование "float" в "int", возможна потеря данных
+D:\WEB\Проекты\StructProgCourse1-2\Project1\Project1\MyForm.h(311,12): warning C4244: аргумент: преобразование "float" в "int", возможна потеря данных
+D:\WEB\Проекты\StructProgCourse1-2\Project1\Project1\MyForm.h(312,16): warning C4244: аргумент: преобразование "float" в "int", возможна потеря данных
+D:\WEB\Проекты\StructProgCourse1-2\Project1\Project1\MyForm.h(312,12): warning C4244: аргумент: преобразование "float" в "int", возможна потеря данных
+D:\WEB\Проекты\StructProgCourse1-2\Project1\Project1\MyForm.h(313,16): warning C4244: аргумент: преобразование "float" в "int", возможна потеря данных
+D:\WEB\Проекты\StructProgCourse1-2\Project1\Project1\MyForm.h(313,12): warning C4244: аргумент: преобразование "float" в "int", возможна потеря данных
   MyForm.obj : обнаружен модуль MSIL; для MSIL последовательная компоновка отключена; выполняется полная компоновка
   Project1.vcxproj -> D:\WEB\Проекты\StructProgCourse1-2\Project1\Debug\Project1.exe

@@ -16,7 +16,9 @@ namespace Project1 {
 	{
 		Bitmap^ img;
 		Graphics^ g;
-		Pen^ pen;
+	private: System::Windows::Forms::Button^ colorPick;
+	private: System::Windows::Forms::ColorDialog^ colorDialog1;
+		   Pen^ pen;
 	public:
 		MyForm(void)
 		{
@@ -92,6 +94,8 @@ namespace Project1 {
 			this->saveFileDialog1 = (gcnew System::Windows::Forms::SaveFileDialog());
 			this->lineThickness = (gcnew System::Windows::Forms::NumericUpDown());
 			this->label4 = (gcnew System::Windows::Forms::Label());
+			this->colorPick = (gcnew System::Windows::Forms::Button());
+			this->colorDialog1 = (gcnew System::Windows::Forms::ColorDialog());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->okno))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->levelTriagle))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->sideTriangle))->BeginInit();
@@ -129,7 +133,7 @@ namespace Project1 {
 			this->saveTriagle->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Bottom | System::Windows::Forms::AnchorStyles::Right));
 			this->saveTriagle->Font = (gcnew System::Drawing::Font(L"Arial Narrow", 20.29091F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->saveTriagle->Location = System::Drawing::Point(777, 439);
+			this->saveTriagle->Location = System::Drawing::Point(779, 439);
 			this->saveTriagle->Name = L"saveTriagle";
 			this->saveTriagle->Size = System::Drawing::Size(225, 47);
 			this->saveTriagle->TabIndex = 2;
@@ -185,7 +189,7 @@ namespace Project1 {
 			this->btncreate->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Bottom | System::Windows::Forms::AnchorStyles::Right));
 			this->btncreate->Font = (gcnew System::Drawing::Font(L"Arial Narrow", 20.29091F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->btncreate->Location = System::Drawing::Point(777, 373);
+			this->btncreate->Location = System::Drawing::Point(779, 385);
 			this->btncreate->Name = L"btncreate";
 			this->btncreate->Size = System::Drawing::Size(225, 48);
 			this->btncreate->TabIndex = 9;
@@ -214,11 +218,24 @@ namespace Project1 {
 			this->label4->TabIndex = 10;
 			this->label4->Text = L"Толщина линии";
 			// 
+			// colorPick
+			// 
+			this->colorPick->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Bottom | System::Windows::Forms::AnchorStyles::Right));
+			this->colorPick->Font = (gcnew System::Drawing::Font(L"Arial Narrow", 20.29091F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->colorPick->Location = System::Drawing::Point(779, 331);
+			this->colorPick->Name = L"colorPick";
+			this->colorPick->Size = System::Drawing::Size(225, 48);
+			this->colorPick->TabIndex = 12;
+			this->colorPick->Text = L"Выбрать цвет";
+			this->colorPick->UseVisualStyleBackColor = true;
+			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(1046, 541);
+			this->Controls->Add(this->colorPick);
 			this->Controls->Add(this->lineThickness);
 			this->Controls->Add(this->label4);
 			this->Controls->Add(this->btncreate);
@@ -244,32 +261,26 @@ namespace Project1 {
 
 	private: System::Void buildSerpinsky(Graphics^ g, Pen^ pen, int level, int side, int thickness, Point p1, Point p2, Point p3) {
 
-		/*g->DrawLine(pen, p1, p2);
-		g->DrawLine(pen, p2, p3);
-		g->DrawLine(pen, p3, p1);
-		*/
 		if (level == 0) {
 			array<Point>^ triagle = { p1, p2, p3 };
 			SolidBrush^ blueBrush = gcnew SolidBrush(Color::Blue);
 			g->FillPolygon(blueBrush, triagle);
-			Point pNew1(p2.X, p2.Y);
-			Point pNew2(pNew1.X - side, pNew1.Y + (Math::Sqrt(3) / 2) * side);
-			Point pNew3(pNew1.X + side, pNew1.Y + (Math::Sqrt(3) / 2) * side);
-
-			buildSerpinsky(g, pen, level, side, thickness, pNew1, pNew2, pNew3);
-
-			/*Point p12(p2.X, p2.Y);
-			Point p23(p3.X, p3.Y);
-			Point p13(p2.X, p2.Y);
-
-			buildSerpinsky(level, side, thickness, p1, p12, p13);
-			buildSerpinsky(level, side, thickness, p12, p2, p23);
-			buildSerpinsky(level, side, thickness, p13, p23, p3);*/
 		}
 
 		else {
+			Point p1Mid(midPoint(p2, p3));
+			Point p2Mid(midPoint(p1, p2));
+			Point p3Mid(midPoint(p1, p3));
+
+			buildSerpinsky(g, pen, level - 1, side, thickness, p1, p2Mid, p3Mid);
+			buildSerpinsky(g, pen, level - 1, side, thickness, p2Mid, p2, p1Mid);
+			buildSerpinsky(g, pen, level - 1, side, thickness, p3Mid, p1Mid, p3);
 		}
 	};
+
+	private: Point midPoint(Point p1, Point p2) {
+		return Point((p1.X + p2.X)/2, (p1.Y + p2.Y) / 2);
+	}
 
 	private: System::Void btncreate_Click(System::Object^ sender, System::EventArgs^ e) {
 		int pW = okno->Width, pH = okno->Height;
@@ -292,6 +303,7 @@ namespace Project1 {
 
 		// Координаты верхнего треугольника
 		float centerX = (okno->Width) / 2;
+
 		float x1 = centerX, y1 = 0;
 		float x2 = (x1 - side / 2), y2 = (Math::Sqrt(3) / 2) * side;
 		float x3 = (x1 + side / 2), y3 = y2;
@@ -301,63 +313,6 @@ namespace Project1 {
 		Point p3(x3, y3);
 	
 		buildSerpinsky(g, pen, level, side, thickness, p1, p2, p3);
-		//buildSerpinsky(level, side, thickness, p1, p2, p3);
-		/*
-		float x2 = (x1 - side), y2 = (Math::Sqrt(3) / 2) * side;
-		float x3 = (x1 + side), y3 = y2;
-
-
-		// То, какой треугольник строим: 0 - левый, 1 - правый
-		int iterationAddTriagle = 0;
-		// Позиция крайней левой точки и крайней правой точки нижних треугольников
-		float AddLeftTriagleX = 0, AddLeftTriagleY = 0;
-		float AddRightTriagle = 0, AddRightTriagleY = 0;
-
-		for (int i = 0; i < level; i++) {
-
-			g->DrawLine(redPen, x1, y1, x2, y2);
-			g->DrawLine(redPen, x2, y2, x3, y3);
-			g->DrawLine(redPen, x3, y3, x1, y1);
-			okno->Refresh();
-
-			// То, какой треугольник строим: 0 - левый, 1 - правый
-			int iteration = 0;
-
-			float addPointX1 = x2, addPointX2 = x3, addPointY1 = y2;
-			float addPointX = x2, addPointY = addPointY1;
-
-			while (iteration < 2) {
-				if (iteration == 1) {
-					addPointX = addPointX2;
-				}
-				x1 = addPointX, y1 = addPointY1;
-				x2 = (addPointX - side), y2 = y1 + (Math::Sqrt(3) / 2) * side;
-				x3 = (addPointX + side), y3 = y2;
-
-				g->DrawLine(redPen, x1, y1, x2, y2);
-				g->DrawLine(redPen, x2, y2, x3, y3);
-				g->DrawLine(redPen, x3, y3, x1, y1);
-				okno->Refresh();
-				iteration++;
-			}
-
-			if (iteration == 0) {
-
-			}
-
-			if (iterationAddTriagle == 0) {
-				x1 = x2, y1 = y2;
-				x2 = (x1 - side), y2 = y1 + (Math::Sqrt(3) / 2) * side;
-				x3 = (x1 + side), y3 = y2;
-			}
-
-			else {
-				x1 = x3, y1 = y3;
-				x2 = (x1 - side), y2 = y1 + (Math::Sqrt(3) / 2) * side;
-				x3 = (x1 + side), y3 = y2;
-				iterationAddTriagle = 0;
-			}
-		}*/
 	}
 	private: System::Void okno_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
 	}
