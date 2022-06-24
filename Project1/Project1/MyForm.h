@@ -50,18 +50,11 @@ namespace Project1 {
 	protected:
 	private: System::Windows::Forms::Label^ label1;
 	private: System::Windows::Forms::PictureBox^ okno;
-	private: System::Windows::Forms::Button^ saveTriagle;
+	private: System::Windows::Forms::Button^ saveTriagle;	private: System::Windows::Forms::Label^ label2;
 
-
-
-
-	private: System::Windows::Forms::Label^ label2;
-	private: System::Windows::Forms::Label^ label3;
 	private: System::Windows::Forms::NumericUpDown^ levelTriagle;
 
 	private: System::Windows::Forms::NumericUpDown^ sideTriangle;
-
-	private: System::Windows::Forms::Button^ btncreate;
 	private: System::Windows::Forms::SaveFileDialog^ saveFileDialog1;
 	private: System::Windows::Forms::NumericUpDown^ lineThickness;
 	private: System::Windows::Forms::Label^ label4;
@@ -134,11 +127,11 @@ namespace Project1 {
 			// saveTriagle
 			// 
 			this->saveTriagle->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Bottom | System::Windows::Forms::AnchorStyles::Right));
-			this->saveTriagle->Font = (gcnew System::Drawing::Font(L"Arial Narrow", 20.29091F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->saveTriagle->Font = (gcnew System::Drawing::Font(L"Arial Narrow", 14.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->saveTriagle->Location = System::Drawing::Point(779, 439);
+			this->saveTriagle->Location = System::Drawing::Point(895, 439);
 			this->saveTriagle->Name = L"saveTriagle";
-			this->saveTriagle->Size = System::Drawing::Size(225, 47);
+			this->saveTriagle->Size = System::Drawing::Size(107, 47);
 			this->saveTriagle->TabIndex = 2;
 			this->saveTriagle->Text = L"Сохранить";
 			this->saveTriagle->UseVisualStyleBackColor = true;
@@ -190,11 +183,11 @@ namespace Project1 {
 			// btncreate
 			// 
 			this->btncreate->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Bottom | System::Windows::Forms::AnchorStyles::Right));
-			this->btncreate->Font = (gcnew System::Drawing::Font(L"Arial Narrow", 20.29091F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->btncreate->Font = (gcnew System::Drawing::Font(L"Arial Narrow", 14.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->btncreate->Location = System::Drawing::Point(779, 385);
+			this->btncreate->Location = System::Drawing::Point(779, 439);
 			this->btncreate->Name = L"btncreate";
-			this->btncreate->Size = System::Drawing::Size(225, 48);
+			this->btncreate->Size = System::Drawing::Size(107, 47);
 			this->btncreate->TabIndex = 9;
 			this->btncreate->Text = L"Построить";
 			this->btncreate->UseVisualStyleBackColor = true;
@@ -224,7 +217,7 @@ namespace Project1 {
 			// colorPick
 			// 
 			this->colorPick->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Bottom | System::Windows::Forms::AnchorStyles::Right));
-			this->colorPick->Font = (gcnew System::Drawing::Font(L"Arial Narrow", 20.29091F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->colorPick->Font = (gcnew System::Drawing::Font(L"Arial Narrow", 14.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->colorPick->Location = System::Drawing::Point(779, 331);
 			this->colorPick->Name = L"colorPick";
@@ -237,9 +230,9 @@ namespace Project1 {
 			// colorPickBG
 			// 
 			this->colorPickBG->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Bottom | System::Windows::Forms::AnchorStyles::Right));
-			this->colorPickBG->Font = (gcnew System::Drawing::Font(L"Arial Narrow", 20.29091F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->colorPickBG->Font = (gcnew System::Drawing::Font(L"Arial Narrow", 14.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->colorPickBG->Location = System::Drawing::Point(779, 277);
+			this->colorPickBG->Location = System::Drawing::Point(779, 384);
 			this->colorPickBG->Name = L"colorPickBG";
 			this->colorPickBG->Size = System::Drawing::Size(225, 48);
 			this->colorPickBG->TabIndex = 13;
@@ -277,7 +270,7 @@ namespace Project1 {
 		}
 #pragma endregion
 
-	private: System::Void buildSerpinsky(Graphics^ g, SolidBrush^ Brush, int level, int side, int thickness, Point p1, Point p2, Point p3) {
+	private: System::Void buildSerpinsky(Graphics^ g, SolidBrush^ Brush, int level, Point p1, Point p2, Point p3) {
 
 		if (level == 0) {
 			array<Point>^ triagle = { p1, p2, p3 };
@@ -289,9 +282,9 @@ namespace Project1 {
 			Point p2Mid(midPoint(p1, p2));
 			Point p3Mid(midPoint(p1, p3));
 
-			buildSerpinsky(g, Brush, level - 1, side, thickness, p1, p2Mid, p3Mid);
-			buildSerpinsky(g, Brush, level - 1, side, thickness, p2Mid, p2, p1Mid);
-			buildSerpinsky(g, Brush, level - 1, side, thickness, p3Mid, p1Mid, p3);
+			buildSerpinsky(g, Brush, level - 1, p1, p2Mid, p3Mid);
+			buildSerpinsky(g, Brush, level - 1, p2Mid, p2, p1Mid);
+			buildSerpinsky(g, Brush, level - 1, p3Mid, p1Mid, p3);
 		}
 	};
 
@@ -310,7 +303,6 @@ namespace Project1 {
 			side = pW;
 		}
 		int level = Convert::ToDouble(levelTriagle->Value);
-		int thickness = Convert::ToDouble(lineThickness->Value);
 
 		okno->Image = img;
 		img = gcnew Bitmap(pW, pH);
@@ -329,7 +321,7 @@ namespace Project1 {
 		Point p2(x2, y2);
 		Point p3(x3, y3);
 	
-		buildSerpinsky(g, Brush, level, side, thickness, p1, p2, p3);
+		buildSerpinsky(g, Brush, level, p1, p2, p3);
 	}
 	private: System::Void okno_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
 	}
