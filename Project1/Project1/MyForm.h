@@ -62,7 +62,6 @@ namespace Project1 {
 
 	private: System::Windows::Forms::Button^ btncreate;
 	private: System::Windows::Forms::SaveFileDialog^ saveFileDialog1;
-	private: System::Windows::Forms::Label^ label4;
 
 
 
@@ -90,7 +89,6 @@ namespace Project1 {
 			this->levelTriagle = (gcnew System::Windows::Forms::NumericUpDown());
 			this->btncreate = (gcnew System::Windows::Forms::Button());
 			this->saveFileDialog1 = (gcnew System::Windows::Forms::SaveFileDialog());
-			this->label4 = (gcnew System::Windows::Forms::Label());
 			this->colorPick = (gcnew System::Windows::Forms::Button());
 			this->colorDialog1 = (gcnew System::Windows::Forms::ColorDialog());
 			this->colorPickBG = (gcnew System::Windows::Forms::Button());
@@ -185,18 +183,6 @@ namespace Project1 {
 			this->btncreate->UseVisualStyleBackColor = true;
 			this->btncreate->Click += gcnew System::EventHandler(this, &MyForm::btncreate_Click);
 			// 
-			// label4
-			// 
-			this->label4->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Right));
-			this->label4->AutoSize = true;
-			this->label4->Font = (gcnew System::Drawing::Font(L"Arial Narrow", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(204)));
-			this->label4->Location = System::Drawing::Point(775, 196);
-			this->label4->Name = L"label4";
-			this->label4->Size = System::Drawing::Size(104, 20);
-			this->label4->TabIndex = 10;
-			this->label4->Text = L"Толщина линии";
-			// 
 			// colorPick
 			// 
 			this->colorPick->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Bottom | System::Windows::Forms::AnchorStyles::Right));
@@ -230,7 +216,6 @@ namespace Project1 {
 			this->ClientSize = System::Drawing::Size(1046, 541);
 			this->Controls->Add(this->colorPickBG);
 			this->Controls->Add(this->colorPick);
-			this->Controls->Add(this->label4);
 			this->Controls->Add(this->btncreate);
 			this->Controls->Add(this->levelTriagle);
 			this->Controls->Add(this->label3);
