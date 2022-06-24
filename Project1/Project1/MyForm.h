@@ -17,8 +17,6 @@ namespace Project1 {
 		Bitmap^ img;
 		Graphics^ g;
 	private: System::Windows::Forms::Button^ colorPick;
-	private: System::Windows::Forms::Button^ colorPickBG;
-	private: System::Windows::Forms::ColorDialog^ colorDialog2;
 	private: System::Windows::Forms::ColorDialog^ colorDialog1;
 		   Pen^ pen;
 	public:
@@ -45,6 +43,7 @@ namespace Project1 {
 			{
 				delete components;
 			}
+
 		}
 
 	protected:
@@ -97,8 +96,6 @@ namespace Project1 {
 			this->label4 = (gcnew System::Windows::Forms::Label());
 			this->colorPick = (gcnew System::Windows::Forms::Button());
 			this->colorDialog1 = (gcnew System::Windows::Forms::ColorDialog());
-			this->colorPickBG = (gcnew System::Windows::Forms::Button());
-			this->colorDialog2 = (gcnew System::Windows::Forms::ColorDialog());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->okno))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->levelTriagle))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->sideTriangle))->BeginInit();
@@ -230,29 +227,14 @@ namespace Project1 {
 			this->colorPick->Name = L"colorPick";
 			this->colorPick->Size = System::Drawing::Size(225, 48);
 			this->colorPick->TabIndex = 12;
-			this->colorPick->Text = L"Цвет треугольника";
+			this->colorPick->Text = L"Выбрать цвет";
 			this->colorPick->UseVisualStyleBackColor = true;
-			this->colorPick->Click += gcnew System::EventHandler(this, &MyForm::colorPick_Click);
-			// 
-			// colorPickBG
-			// 
-			this->colorPickBG->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Bottom | System::Windows::Forms::AnchorStyles::Right));
-			this->colorPickBG->Font = (gcnew System::Drawing::Font(L"Arial Narrow", 20.29091F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(204)));
-			this->colorPickBG->Location = System::Drawing::Point(779, 277);
-			this->colorPickBG->Name = L"colorPickBG";
-			this->colorPickBG->Size = System::Drawing::Size(225, 48);
-			this->colorPickBG->TabIndex = 13;
-			this->colorPickBG->Text = L"Цвет фона";
-			this->colorPickBG->UseVisualStyleBackColor = true;
-			this->colorPickBG->Click += gcnew System::EventHandler(this, &MyForm::colorPickBG_Click);
 			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(1046, 541);
-			this->Controls->Add(this->colorPickBG);
 			this->Controls->Add(this->colorPick);
 			this->Controls->Add(this->lineThickness);
 			this->Controls->Add(this->label4);
@@ -277,11 +259,12 @@ namespace Project1 {
 		}
 #pragma endregion
 
-	private: System::Void buildSerpinsky(Graphics^ g, SolidBrush^ Brush, int level, int side, int thickness, Point p1, Point p2, Point p3) {
+	private: System::Void buildSerpinsky(Graphics^ g, Pen^ pen, int level, int side, int thickness, Point p1, Point p2, Point p3) {
 
 		if (level == 0) {
 			array<Point>^ triagle = { p1, p2, p3 };
-			g->FillPolygon(Brush, triagle);
+			SolidBrush^ blueBrush = gcnew SolidBrush(Color::Blue);
+			g->FillPolygon(blueBrush, triagle);
 		}
 
 		else {
@@ -289,9 +272,9 @@ namespace Project1 {
 			Point p2Mid(midPoint(p1, p2));
 			Point p3Mid(midPoint(p1, p3));
 
-			buildSerpinsky(g, Brush, level - 1, side, thickness, p1, p2Mid, p3Mid);
-			buildSerpinsky(g, Brush, level - 1, side, thickness, p2Mid, p2, p1Mid);
-			buildSerpinsky(g, Brush, level - 1, side, thickness, p3Mid, p1Mid, p3);
+			buildSerpinsky(g, pen, level - 1, side, thickness, p1, p2Mid, p3Mid);
+			buildSerpinsky(g, pen, level - 1, side, thickness, p2Mid, p2, p1Mid);
+			buildSerpinsky(g, pen, level - 1, side, thickness, p3Mid, p1Mid, p3);
 		}
 	};
 
@@ -316,7 +299,7 @@ namespace Project1 {
 		img = gcnew Bitmap(pW, pH);
 		g = Graphics::FromImage(img);
 
-		SolidBrush^ Brush = gcnew SolidBrush(colorDialog1->Color);
+		pen = gcnew Pen(Color::Red, thickness);
 
 		// Координаты верхнего треугольника
 		float centerX = (okno->Width) / 2;
@@ -329,7 +312,7 @@ namespace Project1 {
 		Point p2(x2, y2);
 		Point p3(x3, y3);
 	
-		buildSerpinsky(g, Brush, level, side, thickness, p1, p2, p3);
+		buildSerpinsky(g, pen, level, side, thickness, p1, p2, p3);
 	}
 	private: System::Void okno_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
 	}
@@ -348,23 +331,5 @@ namespace Project1 {
 	private: System::Void saveFileDialog1_FileOk(System::Object^ sender, System::ComponentModel::CancelEventArgs^ e) {
 	}
 
-	private: System::Void colorPick_Click(System::Object^ sender, System::EventArgs^ e) {
-		if (colorDialog1->ShowDialog() == DialogResult) {
-			colorPick->BackColor = colorDialog1->Color;
-		}
-
-		else {
-			SolidBrush^ Brush = gcnew SolidBrush(colorDialog1->Color);
-		}
-	}
-	private: System::Void colorPickBG_Click(System::Object^ sender, System::EventArgs^ e) {
-		if (colorDialog2->ShowDialog() == DialogResult) {
-			colorPick->BackColor = colorDialog2->Color;
-		}
-
-		else {
-			okno->BackColor = colorDialog2->Color;
-		}
-	}
 };
 }
