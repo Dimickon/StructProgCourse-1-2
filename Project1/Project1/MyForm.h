@@ -59,7 +59,6 @@ namespace Project1 {
 	private: System::Windows::Forms::Label^ label3;
 	private: System::Windows::Forms::NumericUpDown^ levelTriagle;
 
-	private: System::Windows::Forms::NumericUpDown^ sideTriangle;
 
 	private: System::Windows::Forms::Button^ btncreate;
 	private: System::Windows::Forms::SaveFileDialog^ saveFileDialog1;
@@ -90,7 +89,6 @@ namespace Project1 {
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->label3 = (gcnew System::Windows::Forms::Label());
 			this->levelTriagle = (gcnew System::Windows::Forms::NumericUpDown());
-			this->sideTriangle = (gcnew System::Windows::Forms::NumericUpDown());
 			this->btncreate = (gcnew System::Windows::Forms::Button());
 			this->saveFileDialog1 = (gcnew System::Windows::Forms::SaveFileDialog());
 			this->lineThickness = (gcnew System::Windows::Forms::NumericUpDown());
@@ -101,7 +99,6 @@ namespace Project1 {
 			this->colorDialog2 = (gcnew System::Windows::Forms::ColorDialog());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->okno))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->levelTriagle))->BeginInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->sideTriangle))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->lineThickness))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -178,15 +175,6 @@ namespace Project1 {
 			this->levelTriagle->Size = System::Drawing::Size(223, 20);
 			this->levelTriagle->TabIndex = 7;
 			// 
-			// sideTriangle
-			// 
-			this->sideTriangle->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Right));
-			this->sideTriangle->Location = System::Drawing::Point(779, 160);
-			this->sideTriangle->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 10000, 0, 0, 0 });
-			this->sideTriangle->Name = L"sideTriangle";
-			this->sideTriangle->Size = System::Drawing::Size(223, 20);
-			this->sideTriangle->TabIndex = 8;
-			// 
 			// btncreate
 			// 
 			this->btncreate->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Bottom | System::Windows::Forms::AnchorStyles::Right));
@@ -257,7 +245,6 @@ namespace Project1 {
 			this->Controls->Add(this->lineThickness);
 			this->Controls->Add(this->label4);
 			this->Controls->Add(this->btncreate);
-			this->Controls->Add(this->sideTriangle);
 			this->Controls->Add(this->levelTriagle);
 			this->Controls->Add(this->label3);
 			this->Controls->Add(this->label2);
@@ -269,7 +256,6 @@ namespace Project1 {
 			this->Text = L"Треугольник Серпинского";
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->okno))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->levelTriagle))->EndInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->sideTriangle))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->lineThickness))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
@@ -277,7 +263,7 @@ namespace Project1 {
 		}
 #pragma endregion
 
-	private: System::Void buildSerpinsky(Graphics^ g, SolidBrush^ Brush, int level, int side, int thickness, Point p1, Point p2, Point p3) {
+	private: System::Void buildSerpinsky(Graphics^ g, SolidBrush^ Brush, int level, int side, Point p1, Point p2, Point p3) {
 
 		if (level == 0) {
 			array<Point>^ triagle = { p1, p2, p3 };
@@ -289,9 +275,9 @@ namespace Project1 {
 			Point p2Mid(midPoint(p1, p2));
 			Point p3Mid(midPoint(p1, p3));
 
-			buildSerpinsky(g, Brush, level - 1, side, thickness, p1, p2Mid, p3Mid);
-			buildSerpinsky(g, Brush, level - 1, side, thickness, p2Mid, p2, p1Mid);
-			buildSerpinsky(g, Brush, level - 1, side, thickness, p3Mid, p1Mid, p3);
+			buildSerpinsky(g, Brush, level - 1, side, p1, p2Mid, p3Mid);
+			buildSerpinsky(g, Brush, level - 1, side, p2Mid, p2, p1Mid);
+			buildSerpinsky(g, Brush, level - 1, side, p3Mid, p1Mid, p3);
 		}
 	};
 
@@ -310,7 +296,6 @@ namespace Project1 {
 			side = pW;
 		}
 		int level = Convert::ToDouble(levelTriagle->Value);
-		int thickness = Convert::ToDouble(lineThickness->Value);
 
 		okno->Image = img;
 		img = gcnew Bitmap(pW, pH);
@@ -329,7 +314,7 @@ namespace Project1 {
 		Point p2(x2, y2);
 		Point p3(x3, y3);
 	
-		buildSerpinsky(g, Brush, level, side, thickness, p1, p2, p3);
+		buildSerpinsky(g, Brush, level, side, p1, p2, p3);
 	}
 	private: System::Void okno_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
 	}
