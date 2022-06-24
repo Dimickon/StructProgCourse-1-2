@@ -56,7 +56,6 @@ namespace Project1 {
 
 
 	private: System::Windows::Forms::Label^ label2;
-	private: System::Windows::Forms::Label^ label3;
 	private: System::Windows::Forms::NumericUpDown^ levelTriagle;
 
 
@@ -85,7 +84,6 @@ namespace Project1 {
 			this->okno = (gcnew System::Windows::Forms::PictureBox());
 			this->saveTriagle = (gcnew System::Windows::Forms::Button());
 			this->label2 = (gcnew System::Windows::Forms::Label());
-			this->label3 = (gcnew System::Windows::Forms::Label());
 			this->levelTriagle = (gcnew System::Windows::Forms::NumericUpDown());
 			this->btncreate = (gcnew System::Windows::Forms::Button());
 			this->saveFileDialog1 = (gcnew System::Windows::Forms::SaveFileDialog());
@@ -149,18 +147,6 @@ namespace Project1 {
 			this->label2->Text = L"Высота треугольника";
 			this->label2->Click += gcnew System::EventHandler(this, &MyForm::label2_Click);
 			// 
-			// label3
-			// 
-			this->label3->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Right));
-			this->label3->AutoSize = true;
-			this->label3->Font = (gcnew System::Drawing::Font(L"Arial Narrow", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(204)));
-			this->label3->Location = System::Drawing::Point(775, 137);
-			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(148, 20);
-			this->label3->TabIndex = 6;
-			this->label3->Text = L"Сторона треугольника";
-			// 
 			// levelTriagle
 			// 
 			this->levelTriagle->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Right));
@@ -218,7 +204,6 @@ namespace Project1 {
 			this->Controls->Add(this->colorPick);
 			this->Controls->Add(this->btncreate);
 			this->Controls->Add(this->levelTriagle);
-			this->Controls->Add(this->label3);
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->saveTriagle);
 			this->Controls->Add(this->okno);
