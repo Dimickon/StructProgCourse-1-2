@@ -50,12 +50,7 @@ namespace Project1 {
 	protected:
 	private: System::Windows::Forms::Label^ label1;
 	private: System::Windows::Forms::PictureBox^ okno;
-	private: System::Windows::Forms::Button^ saveTriagle;
-
-
-
-
-	private: System::Windows::Forms::Label^ label2;
+	private: System::Windows::Forms::Button^ saveTriagle;	private: System::Windows::Forms::Label^ label2;
 	private: System::Windows::Forms::Label^ label3;
 	private: System::Windows::Forms::NumericUpDown^ levelTriagle;
 
@@ -337,5 +332,5 @@ namespace Project1 {
 			okno->BackColor = colorDialog2->Color;
 		}
 	}
-};
+
 }
