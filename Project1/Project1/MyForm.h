@@ -62,7 +62,6 @@ namespace Project1 {
 
 	private: System::Windows::Forms::Button^ btncreate;
 	private: System::Windows::Forms::SaveFileDialog^ saveFileDialog1;
-	private: System::Windows::Forms::NumericUpDown^ lineThickness;
 	private: System::Windows::Forms::Label^ label4;
 
 
@@ -91,7 +90,6 @@ namespace Project1 {
 			this->levelTriagle = (gcnew System::Windows::Forms::NumericUpDown());
 			this->btncreate = (gcnew System::Windows::Forms::Button());
 			this->saveFileDialog1 = (gcnew System::Windows::Forms::SaveFileDialog());
-			this->lineThickness = (gcnew System::Windows::Forms::NumericUpDown());
 			this->label4 = (gcnew System::Windows::Forms::Label());
 			this->colorPick = (gcnew System::Windows::Forms::Button());
 			this->colorDialog1 = (gcnew System::Windows::Forms::ColorDialog());
@@ -99,7 +97,6 @@ namespace Project1 {
 			this->colorDialog2 = (gcnew System::Windows::Forms::ColorDialog());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->okno))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->levelTriagle))->BeginInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->lineThickness))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// label1
@@ -188,15 +185,6 @@ namespace Project1 {
 			this->btncreate->UseVisualStyleBackColor = true;
 			this->btncreate->Click += gcnew System::EventHandler(this, &MyForm::btncreate_Click);
 			// 
-			// lineThickness
-			// 
-			this->lineThickness->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Right));
-			this->lineThickness->Location = System::Drawing::Point(779, 219);
-			this->lineThickness->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 10000, 0, 0, 0 });
-			this->lineThickness->Name = L"lineThickness";
-			this->lineThickness->Size = System::Drawing::Size(223, 20);
-			this->lineThickness->TabIndex = 11;
-			// 
 			// label4
 			// 
 			this->label4->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Right));
@@ -242,7 +230,6 @@ namespace Project1 {
 			this->ClientSize = System::Drawing::Size(1046, 541);
 			this->Controls->Add(this->colorPickBG);
 			this->Controls->Add(this->colorPick);
-			this->Controls->Add(this->lineThickness);
 			this->Controls->Add(this->label4);
 			this->Controls->Add(this->btncreate);
 			this->Controls->Add(this->levelTriagle);
@@ -256,7 +243,6 @@ namespace Project1 {
 			this->Text = L"Треугольник Серпинского";
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->okno))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->levelTriagle))->EndInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->lineThickness))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
