@@ -121,7 +121,8 @@ namespace Project1 {
 			this->okno->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
 				| System::Windows::Forms::AnchorStyles::Left)
 				| System::Windows::Forms::AnchorStyles::Right));
-			this->okno->BackColor = System::Drawing::Color::Lavender;
+			this->okno->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(204)), static_cast<System::Int32>(static_cast<System::Byte>(204)),
+				static_cast<System::Int32>(static_cast<System::Byte>(204)));
 			this->okno->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
 			this->okno->Location = System::Drawing::Point(40, 76);
 			this->okno->MinimumSize = System::Drawing::Size(300, 200);
@@ -159,10 +160,10 @@ namespace Project1 {
 			this->label2->ForeColor = System::Drawing::Color::White;
 			this->label2->Location = System::Drawing::Point(776, 76);
 			this->label2->Name = L"label2";
-			this->label2->Padding = System::Windows::Forms::Padding(20, 12, 20, 12);
-			this->label2->Size = System::Drawing::Size(228, 49);
+			this->label2->Padding = System::Windows::Forms::Padding(23, 12, 23, 12);
+			this->label2->Size = System::Drawing::Size(226, 49);
 			this->label2->TabIndex = 4;
-			this->label2->Text = L"Высота треугольника";
+			this->label2->Text = L"Глубина построения";
 			this->label2->Click += gcnew System::EventHandler(this, &MyForm::label2_Click);
 			// 
 			// levelTriagle
