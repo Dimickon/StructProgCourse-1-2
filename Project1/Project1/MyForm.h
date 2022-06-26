@@ -300,9 +300,9 @@ namespace Project1 {
 		Point p2(x2, y2);
 		Point p3(x3, y3);
 	
-		buildSerpinsky(g, pen, level, side, thickness, p1, p2, p3);
+		//buildSerpinsky(g, pen, level, side, thickness, p1, p2, p3);
 		//buildSerpinsky(level, side, thickness, p1, p2, p3);
-		/*
+		
 		float x2 = (x1 - side), y2 = (Math::Sqrt(3) / 2) * side;
 		float x3 = (x1 + side), y3 = y2;
 
@@ -357,7 +357,7 @@ namespace Project1 {
 				x3 = (x1 + side), y3 = y2;
 				iterationAddTriagle = 0;
 			}
-		}*/
+		}
 	}
 	private: System::Void okno_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
 	}
