@@ -29,8 +29,6 @@ namespace Project1 {
 			//TODO: добавьте код конструктора
 			//
 
-			okno->Image = img;
-			buildTriagle();
 			buildTriagle();
 		}
 
@@ -281,8 +279,8 @@ namespace Project1 {
 		}
 		int level = Convert::ToDouble(levelTriagle->Value);
 
-		okno->Image = img;
 		img = gcnew Bitmap(pW, pH);
+		okno->Image = img;
 		g = Graphics::FromImage(img);
 
 		SolidBrush^ Brush = gcnew SolidBrush(colorDialog1->Color);
@@ -298,9 +296,9 @@ namespace Project1 {
 		Point p2(x2, y2);
 		Point p3(x3, y3);
 
-		buildSerpinsky(g, Brush, level, side, p1, p2, p3);
+		buildSierpinsky(g, Brush, level, side, p1, p2, p3);
 	};
-	private: System::Void buildSerpinsky(Graphics^ g, SolidBrush^ Brush, int level, int side, Point p1, Point p2, Point p3) {
+	private: System::Void buildSierpinsky(Graphics^ g, SolidBrush^ Brush, int level, int side, Point p1, Point p2, Point p3) {
 
 		if (level == 0) {
 			array<Point>^ triagle = { p1, p2, p3 };
@@ -312,9 +310,9 @@ namespace Project1 {
 			Point p2Mid(midPoint(p1, p2));
 			Point p3Mid(midPoint(p1, p3));
 
-			buildSerpinsky(g, Brush, level - 1, side, p1, p2Mid, p3Mid);
-			buildSerpinsky(g, Brush, level - 1, side, p2Mid, p2, p1Mid);
-			buildSerpinsky(g, Brush, level - 1, side, p3Mid, p1Mid, p3);
+			buildSierpinsky(g, Brush, level - 1, side, p1, p2Mid, p3Mid);
+			buildSierpinsky(g, Brush, level - 1, side, p2Mid, p2, p1Mid);
+			buildSierpinsky(g, Brush, level - 1, side, p3Mid, p1Mid, p3);
 		}
 	};
 
@@ -323,7 +321,6 @@ namespace Project1 {
 	}
 
 	private: System::Void btncreate_Click(System::Object^ sender, System::EventArgs^ e) {
-		buildTriagle();
 		buildTriagle();
 	}
 	private: System::Void okno_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
@@ -349,7 +346,6 @@ namespace Project1 {
 		}
 
 		else {
-			buildTriagle();
 			buildTriagle();
 		}
 	}
